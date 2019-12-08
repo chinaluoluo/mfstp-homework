@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
 </head>
 
 <body>
@@ -35,25 +35,30 @@
     <body>
         <div class="a"></div>
         <div class="a"></div>
-        <img data-src="image/banner.jpg" alt="">
+        <img data-src="2/1.png" alt="">
         <div class="a"></div>
         <div class="a"></div>
         <script>
+            LazyImg($("img"));
+
             function LazyImg(imgs) {
                 function isshow(img) {
+
                     var windowheight = window.innerHeight;
                     var srollheight = window.pageYOffset;
-                    var imgtotop = img.offset().top;
-
+                    var imgtotop = $(img).offset().top;
                     return ((srollheight + windowheight) > imgtotop);
                 }
-                for (img in imgs) {
-                    window.onscroll = function() {
-                        console.log(isshow());
-                        if (isshow(img)) {
-                            img.setAttribute("src", img.data("src"));
+                for (var i = 0; i < imgs.length; i++) {
+                    (function(i) {
+                        window.onscroll = function() {
+                            console.log(isshow(imgs[i]));
+                            if (isshow(imgs[i])) {
+                                imgs[i].setAttribute("src", $(imgs[i]).data("src"));
+                            }
                         }
-                    }
+                    })(i)
+
                 }
             }
         </script>
