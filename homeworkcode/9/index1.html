@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+</head>
+
+<body>
+    <select name="province" id="province" onchange="getpcode()">
+        <option value="11">北京</option>
+        <option value="12">天津</option>
+        <option value="13">河北</option>
+    </select>
+    <select name="city" id="city" onchange="getccode()">
+            <option value="01">请选择城市</option>
+        </select>
+    <select name="county" id="county">
+                <option value="01">请选择区县</option>
+        </select>
+    <script>
+        var provincecode = document.getElementById("province").value;
+        var citycode = document.getElementById("city").value;
+        getpcode();
+
+        function getpcode() {
+            var provincecode = document.getElementById("province").value;
+            getdata("province", provincecode);
+
+            getccode();
+        }
+
+        function getccode() {
+            var citycode = document.getElementById("city").value;
+            var provincecode = document.getElementById("province").value;
+            console.log(citycode);
+            getdata("city", citycode, provincecode);
+        }
+
+        function getdata(level, code, provincecode) {
+
+            $.ajax({
+                method: "POST",
+                url: "http://www.a.com:3000/city",
+                data: {
+                    level: level,
+                    province: provincecode,
+                    code: code
+                },
+                success: function(data) {
+                    if (level == "province") {
+                        var city = document.getElementById("city");
+                        city.options.length = 0;
+                        for (var j = 0; j < data.length; j++) {
+                            city.options.add(new Option(data[j].name, data[j].code))
+                        }
+                    } else if (level == "city") {
+                        var county = document.getElementById("county");
+                        county.options.length = 0;
+                        console.log(data);
+                        for (var j = 0; j < data.length; j++) {
+                            county.options.add(new Option(data[j].name, data[j].code))
+
+                        }
+                    }
+
+
+                }
+
+            })
+        }
+    </script>
+</body>
+
+</html>
