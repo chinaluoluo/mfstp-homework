@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <slottest>
+            <div>content</div>
+        </slottest>
+    </div>
+    <script>
+        Vue.component('slottest', {
+            template: "<div><header>header</header><slot></slot><footer>footer</footer></div>"
+        })
+        var app = new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+
+</html>
