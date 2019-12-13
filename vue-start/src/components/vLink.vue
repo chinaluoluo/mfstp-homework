@@ -2,7 +2,6 @@
 <a @click="click">
     <slot></slot>
 </a>
-
 </template>
 
 <script>
