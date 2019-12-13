@@ -9,23 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        body {
-            font-family: Menlo, Consolas, monospace;
-            color: #444;
-        }
-        
         .item {
             cursor: pointer;
-        }
-        
-        .bold {
-            font-weight: bold;
-        }
-        
-        ul {
-            padding-left: 1em;
-            line-height: 1.5em;
-            list-style-type: dot;
         }
     </style>
 </head>
@@ -112,7 +97,6 @@
             }
         })
 
-        // boot up the demo
         var demo = new Vue({
             el: '#demo',
             data: {
