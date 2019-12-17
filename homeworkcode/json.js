@@ -15,9 +15,24 @@ function parseValue() {
         return parseNull();
     } else if (isNumber()) {
         return parseNumber();
+    }
+    if (json[i] == '/') {
+        return parseReg();
     } else {
         throw new Error("12331132")
     }
+}
+
+function parseReg() {
+    let res = '/';
+    i++
+    while (json[i] != '/') {
+        res = res + json[i];
+        i++;
+    }
+    res += '/';
+    i = jumpspace(); //跳过空格和换行
+    return eval(res);
 }
 
 function parseObject() {
