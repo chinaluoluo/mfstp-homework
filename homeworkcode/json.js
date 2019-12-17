@@ -3,7 +3,6 @@ let i = 0;
 
 function parseValue() {
     i = jumpspace(); //跳过空格和换行
-    console.log(json[i])
     if (json[i] == "{") {
         return parseObject();
     } else if (json[i] == "[") {
@@ -15,7 +14,7 @@ function parseValue() {
     } else if (json[i] == 'n') {
         return parseNull();
     } else if (isNumber()) {
-        return parseNumber;
+        return parseNumber();
     } else {
         throw new Error("12331132")
     }
@@ -28,7 +27,6 @@ function parseObject() {
         i = jumpspace(); //跳过空格和换行
         let key = null;
         if (json[i] == '"') {
-            i++; //跳过前引号
             key = parseString();
         }
         i = jumpspace(); //跳过空格和换行
@@ -47,9 +45,11 @@ function parseObject() {
 
 function parseString() {
     let res = "";
+    i++; //跳过前引号
     i = jumpspace(); //跳过空格和换行
     while (json[i] != '"') {
         res += json[i];
+        i++;
     }
     i++; //跳过后引号
     return res;
@@ -95,6 +95,7 @@ function parseArray() {
             i++;
         i = jumpspace(); //跳过空格和换行
     }
+    i++;
     return res;
 }
 
@@ -108,7 +109,7 @@ function parseNull() {
 }
 
 function jumpspace() {
-    while (json[i] == '\t' || json[i] == '\n') {
+    while (json[i] == ' ' || json[i] == '\n') {
         i++;
     }
     return i;
