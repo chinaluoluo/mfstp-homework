@@ -14,25 +14,13 @@ import  RecentArticle from './RecentArticle'
 import  ArticleByTime from './ArticleByTime'
 import  Target from './Target'
 import  ArticleShow from './ArticleShow'
+import axios from 'axios'
 
 export default {
   name: 'MainPage',
   data () {
     return {
-      articles:[
-        {
-          id:1,
-          title:"文章名字1" 
-        },
-        {
-          id:2,
-          title:"文章名字2" 
-        },
-        {
-          id:3,
-          title:"文章名字3" 
-        }
-      ]
+      articles:[]
     }
   },
   components:{
@@ -41,6 +29,9 @@ export default {
     ArticleByTime,
     Target,
     ArticleShow
+  },
+   created:{
+    
   }
 }
 </script>
