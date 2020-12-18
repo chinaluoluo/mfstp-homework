@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "debug": "^4.1.1",
-    "dompurify": "^2.0.7",
+    "dompurify": "^2.0.17",
     "ejs": "~2.3.3",
     "jsdom": "^15.2.1",
     "koa": "^2.7.0",
